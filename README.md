@@ -73,7 +73,7 @@ All prompt techniques were evaluated using batch processing on **200 Yelp review
 | 1st | **Prompt 4 (CoT)** | **67.50%** | 96.50% | **0.360** | 200/0 |
 | 2nd | Prompt 2 (Aspect) | 65.50% | **97.50%** | 0.370 | 200/0 |
 | 3rd | Prompt 1 (Direct) | 65.00% | 97.00% | 0.380 | 200/0 |
-| 4th | Prompt 3 (Few-Shot) | 63.95% | 96.51% | 0.395 | 172/28 ⚠️ |
+| 4th | Prompt 3 (Few-Shot) | 63.95% | 96.51% | 0.395 | 172/28 |
 
 ### Accuracy by Star Rating
 
