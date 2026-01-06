@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Experience | AI Feedback System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">⭐</span>
+                <span class="logo-text">Feedback Hub</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Review Form Card -->
+            <div class="card review-card">
+                <h1 class="card-title">Share Your Experience</h1>
+                <p class="card-subtitle">We value your feedback! Let us know how we did.</p>
+
+                <form id="review-form" class="review-form">
+                    <!-- Star Rating -->
+                    <div class="form-group">
+                        <label class="form-label">How would you rate your experience?</label>
+                        <div class="star-rating" id="star-rating">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" id="rating-value" name="rating" value="0">
+                        <p class="rating-text" id="rating-text">Click to rate</p>
+                    </div>
+
+                    <!-- Review Text -->
+                    <div class="form-group">
+                        <label class="form-label" for="review-text">Tell us about your experience</label>
+                        <textarea 
+                            id="review-text" 
+                            name="review_text" 
+                            class="form-textarea"
+                            placeholder="What did you like or dislike? Any suggestions for improvement?"
+                            maxlength="1000"
+                            rows="5"
+                        ></textarea>
+                        <div class="char-counter">
+                            <span id="char-count">0</span>/1000 characters
+                            <span class="min-chars">(minimum 10)</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary" id="submit-btn">
+                        <span class="btn-text">Submit Review</span>
+                        <span class="btn-loader" style="display: none;">
+                            <span class="spinner"></span>
+                            Processing...
+                        </span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="card response-card" id="response-card" style="display: none;">
+                <div class="response-header">
+                    <span class="response-icon"></span>
+                    <h2 class="response-title">Thank You!</h2>
+                </div>
+                <div class="response-content" id="ai-response">
+                </div>
+                <div class="response-meta" id="response-meta">
+                </div>
+                <button class="btn btn-secondary" id="new-review-btn">
+                    Submit Another Review
+                </button>
+            </div>
+
+            <!-- Error Toast -->
+            <div class="toast toast-error" id="error-toast" style="display: none;">
+                <span class="toast-icon">❌</span>
+                <span class="toast-message" id="error-message">Something went wrong</span>
+                <button class="toast-close" id="toast-close">&times;</button>
+            </div>
+
+            <!-- Success Toast -->
+            <div class="toast toast-success" id="success-toast" style="display: none;">
+                <span class="toast-icon">✅</span>
+                <span class="toast-message">Review submitted successfully!</span>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Made By Vinay</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

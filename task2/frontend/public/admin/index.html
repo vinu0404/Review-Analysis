@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AI Feedback System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-card">
+            <div class="login-header">
+                <span class="login-icon">🔐</span>
+                <h1>Admin Login</h1>
+                <p>Enter your password to access the dashboard</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter admin password"
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+                <button type="submit" class="btn btn-primary" id="login-btn">
+                    <span class="btn-text">Login</span>
+                    <span class="btn-loader" style="display: none;">
+                        <span class="spinner"></span>
+                    </span>
+                </button>
+                <p class="login-error" id="login-error" style="display: none;"></p>
+            </form>
+        </div>
+    </div>
+    <div id="dashboard" class="dashboard" style="display: none;">
+        <header class="header">
+            <div class="header-left">
+                <span class="logo-icon">📊</span>
+                <h1 class="logo-text">Admin Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="refresh-indicator" id="refresh-indicator">
+                    <span class="refresh-dot"></span>
+                    <span>Auto-refresh: <span id="countdown">30</span>s</span>
+                </div>
+                <button class="btn btn-outline" id="refresh-btn" title="Refresh Now">
+                    🔄 Refresh
+                </button>
+                <button class="btn btn-outline btn-danger" id="logout-btn">
+                    Logout
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="analytics-section">
+                <div class="analytics-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Reviews</p>
+                            <h2 class="stat-value" id="total-reviews">-</h2>
+                        </div>
+                    </div>
+
+                    <!-- Average Rating -->
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Average Rating</p>
+                            <h2 class="stat-value" id="avg-rating">-</h2>
+                        </div>
+                    </div>
+
+                    <!-- Today's Reviews -->
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <p class="stat-label">Today</p>
+                            <h2 class="stat-value" id="reviews-today">-</h2>
+                        </div>
+                    </div>
+
+                    <!-- This Week -->
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <p class="stat-label">This Week</p>
+                            <h2 class="stat-value" id="reviews-week">-</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rating Distribution Chart -->
+                <div class="chart-card">
+                    <h3 class="chart-title">Rating Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="rating-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reviews Section -->
+            <section class="reviews-section">
+                <div class="reviews-header">
+                    <h2>Recent Reviews</h2>
+                    <div class="reviews-filters">
+                        <select id="rating-filter" class="filter-select">
+                            <option value="">All Ratings</option>
+                            <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
+                            <option value="4">⭐⭐⭐⭐ (4 stars)</option>
+                            <option value="3">⭐⭐⭐ (3 stars)</option>
+                            <option value="2">⭐⭐ (2 stars)</option>
+                            <option value="1">⭐ (1 star)</option>
+                        </select>
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            class="search-input" 
+                            placeholder="Search reviews..."
+                        >
+                    </div>
+                </div>
+
+                <!-- Reviews Table -->
+                <div class="table-container">
+                    <table class="reviews-table" id="reviews-table">
+                        <thead>
+                            <tr>
+                                <th class="col-rating">Rating</th>
+                                <th class="col-review">Review</th>
+                                <th class="col-summary">AI Summary</th>
+                                <th class="col-actions">Recommended Actions</th>
+                                <th class="col-time">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviews-tbody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination" id="pagination">
+                    <button class="btn btn-sm" id="prev-page" disabled>← Previous</button>
+                    <span class="page-info" id="page-info">Page 1</span>
+                    <button class="btn btn-sm" id="next-page" disabled>Next →</button>
+                </div>
+
+                <div class="loading-state" id="loading-state" style="display: none;">
+                    <div class="spinner-large"></div>
+                    <p>Loading reviews...</p>
+                </div>
+                <div class="empty-state" id="empty-state" style="display: none;">
+                    <span class="empty-icon">📭</span>
+                    <h3>No reviews found</h3>
+                    <p>Reviews will appear here when customers submit feedback.</p>
+                </div>
+            </section>
+        </main>
+        <div class="modal" id="review-modal" style="display: none;">
+            <div class="modal-backdrop" id="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Review Details</h2>
+                    <button class="modal-close" id="modal-close">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div class="toast toast-error" id="error-toast" style="display: none;">
+            <span class="toast-icon">❌</span>
+            <span class="toast-message" id="error-message">Error occurred</span>
+            <button class="toast-close" onclick="hideToast('error-toast')">&times;</button>
+        </div>
+
+        <div class="toast toast-success" id="success-toast" style="display: none;">
+            <span class="toast-icon">✅</span>
+            <span class="toast-message" id="success-message">Success</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
