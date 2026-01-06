@@ -13,7 +13,6 @@ AI-powered review analysis project consisting of two main tasks:
   - [Batch Processing](#batch-processing)
   - [Results & Analysis](#results--analysis)
 - [Task 2: AI Feedback System](#task-2-ai-feedback-system)
-  - [Live Demo](#live-demo)
   - [System Architecture](#system-architecture)
   - [Screenshots](#screenshots)
   - [Tech Stack](#tech-stack)
