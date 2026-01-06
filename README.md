@@ -1,6 +1,5 @@
 # Review Analysis System
-
-A comprehensive AI-powered review analysis project consisting of two main tasks:
+AI-powered review analysis project consisting of two main tasks:
 1. **Task 1**: Yelp Review Rating Prediction using LLM Prompting Techniques
 2. **Task 2**: Two-Dashboard AI Feedback System (Web Application)
 
