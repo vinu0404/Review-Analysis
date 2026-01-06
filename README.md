@@ -1,7 +1,7 @@
 # Review Analysis System
 AI-powered review analysis project consisting of two main tasks:
 1. **Task 1**: Yelp Review Rating Prediction using LLM Prompting Techniques
-2. **Task 2**: Two-Dashboard AI Feedback System (Web Application)
+2. **Task 2**: Two-Dashboard AI Feedback System (Web Application) with auto-refresh system
 
 ---
 
@@ -187,13 +187,13 @@ flowchart LR
 
 ### Admin Dashboard - Overview
 ![Admin Dashboard Overview](images/admin_dashboard1.png)
-*Analytics cards showing total reviews, average rating, and activity metrics*
+*Analytics cards with total reviews, average rating,activity metrics and Auto-Refresh*
 
 ### Admin Dashboard - Reviews
 ![Admin Dashboard Reviews](images/admin_dashboard2.png)
 *Paginated reviews table with AI summaries and recommended actions*
 
-### FastAPI Documentation
+### FastAPI 
 ![FastAPI Swagger](images/fastapi.png)
 *Interactive API documentation with Swagger UI*
 
