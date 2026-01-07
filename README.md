@@ -58,7 +58,7 @@ Guides the model through step-by-step reasoning before prediction.
 ## Batch Processing
 
 All prompt techniques were evaluated using batch processing on **200 Yelp reviews**:
-- Used `batch()` method from LangChain for parallel processing
+- Using parallel API calls, reducing total inference time.
 - Pydantic schemas ensure structured JSON output
 - Original ratings stored separately (not leaked to LLM)
 - Evaluation metrics calculated post-inference
