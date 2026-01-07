@@ -118,6 +118,22 @@ body {
     border-radius: var(--radius-sm);
 }
 
+.login-hint {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.login-hint code {
+    background: var(--bg-secondary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
 /* ==========================================
    Dashboard Layout
    ========================================== */
