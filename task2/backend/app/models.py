@@ -6,6 +6,20 @@ from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional, Dict
 from datetime import datetime
 from enum import Enum
+
+class LLMReviewAnalysis(BaseModel):
+    """Structured output schema for LLM review analysis - generates all three outputs in one call"""
+    
+    admin_summary: str = Field(
+        description="Concise internal summary (1-2 sentences, under 50 words) capturing sentiment, key points, and areas of praise/concern for management review"
+    )
+    recommended_actions: str = Field(
+        description="2-3 specific actionable recommendations in bullet point format (• Action 1\n• Action 2\n• Action 3), each under 15 to 25 words, starting with action verbs"
+    )
+    user_response: str = Field(
+        description="Warm, empathetic customer response (40-80 words, 2-3 sentences) personalized to the review rating and content"
+    )
+
 class ReviewStatus(str, Enum):
     PENDING = "pending"
     PROCESSED = "processed"
